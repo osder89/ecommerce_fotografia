@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 class EventPhotosScreen extends StatelessWidget {
   static const String name = 'evento';
 
-  const EventPhotosScreen({Key? key});
+  EventPhotosScreen({Key? key});
+
+  final List<String> imageAssets = [
+    'assets/1.jpg',
+    'assets/2.jpg',
+    'assets/3.jpg',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -14,60 +20,12 @@ class EventPhotosScreen extends StatelessWidget {
           child: CustomScrollView(
             slivers: [
               SliverAppBar(
-                expandedHeight: 200.0,
-                floating: true,
-                pinned: true,
+                backgroundColor: Colors.blueAccent,
+                expandedHeight: 200,
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Padding(
-                    padding: const EdgeInsets.only(left: 16.0, bottom: 16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          'Evento X',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(height: 4),
-                        Row(
-                          children: [
-                            Icon(Icons.calendar_today,
-                                size: 16, color: Colors.white),
-                            SizedBox(width: 4),
-                            Text(
-                              '20 de Noviembre, 2023',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 4),
-                        Row(
-                          children: [
-                            Icon(Icons.location_on,
-                                size: 16, color: Colors.white),
-                            SizedBox(width: 4),
-                            Text(
-                              'Lugar del Evento',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  background: Image.network(
-                    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/music-concert-poster-template-design-7aac74443adef25b155da04ea1338157_screen.jpg?ts=1641049200",
-                    // URL de la imagen de fondo
+                  title: Text('Fotos del evento'),
+                  background: Image.asset(
+                    'assets/4.jpg',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -87,19 +45,23 @@ class EventPhotosScreen extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        color: Colors.orange[200], // Nuevo color de tarjeta
+                        color: Colors.orange[200],
                         child: Container(
                           height: 150,
                           width: 150,
-                          child: Image.network(
-                            "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/music-concert-poster-template-design-7aac74443adef25b155da04ea1338157_screen.jpg?ts=1641049200",
-                            // URL de la imagen
-                            fit: BoxFit.cover,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  imageAssets[index % imageAssets.length]),
+                              fit: BoxFit.cover,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                       );
                     },
-                    childCount: 10,
+                    childCount:
+                        4, // Aquí puedes ajustar la cantidad de imágenes a mostrar
                   ),
                 ),
               ),

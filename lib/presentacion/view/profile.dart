@@ -1,3 +1,4 @@
+import 'package:ecommerce_fotografia/presentacion/widget/custom_bottom_navigatorbar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class PerfilScreen extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: CustomBottomNavigator(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
@@ -51,7 +53,7 @@ class PerfilScreen extends StatelessWidget {
                     ),
                     child: CircleAvatar(
                       radius: 60,
-                      backgroundImage: AssetImage('assets/user_image.jpg'),
+                      backgroundImage: AssetImage('assets/1.jpg'),
                     ),
                   ),
                   CircleAvatar(
@@ -68,7 +70,7 @@ class PerfilScreen extends StatelessWidget {
             SizedBox(height: 20),
             Center(
               child: Text(
-                'Nombre de Usuario',
+                'Jorge Cari ',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -78,15 +80,15 @@ class PerfilScreen extends StatelessWidget {
             SizedBox(height: 20),
             _buildProfileInfo(
               Icons.email,
-              'example@email.com',
+              'jorge@email.com',
             ),
             _buildProfileInfo(
               Icons.location_on,
-              'Ciudad, País',
+              'Santa Cruz, Bolivia',
             ),
             _buildProfileInfo(
               Icons.link,
-              'www.example.com',
+              'www.tufotografia.com',
             ),
             SizedBox(height: 20),
             ElevatedButton(

@@ -1,14 +1,13 @@
 import 'package:ecommerce_fotografia/presentacion/view/evento_screen.dart';
-import 'package:ecommerce_fotografia/presentacion/view/profile.dart';
-import 'package:ecommerce_fotografia/presentacion/view/tarjetas_screen.dart';
 import 'package:ecommerce_fotografia/presentacion/widget/custom_appbar.dart';
 import 'package:ecommerce_fotografia/presentacion/widget/custom_bottom_navigatorbar.dart';
-import 'package:ecommerce_fotografia/presentacion/widget/movie_horizontal_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
   static const name = 'home';
+
   const HomeScreen({super.key});
 
   @override
@@ -31,15 +30,16 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   void initState() {
     super.initState();
+    initPlatform();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: CustomAppBar(),
-        backgroundColor: Colors.black,
-        elevation: 0,
+        title: const CustomAppBar(),
+        backgroundColor: Colors.blueAccent,
+        elevation: 2,
       ),
       body: Padding(
         padding: EdgeInsets.all(20),
@@ -47,12 +47,12 @@ class _HomeViewState extends ConsumerState<_HomeView> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               decoration: BoxDecoration(
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: Row(
+              child: const Row(
                 children: [
                   Icon(Icons.search, color: Colors.grey),
                   SizedBox(width: 10),
@@ -60,7 +60,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: ListView(
                 scrollDirection: Axis.vertical,
@@ -68,23 +68,20 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                   CardItem(
                     title: 'Concierto de rock',
                     subtitle: '20 - Febrero - 2023',
-                    imageUrl:
-                        "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/music-concert-poster-template-design-7aac74443adef25b155da04ea1338157_screen.jpg?ts=1641049200",
+                    imageUrl: "assets/4.jpg",
                     voidCallbackAction: () {},
                   ),
                   CardItem(
                     title: 'Conductores',
                     subtitle: '23 Conductores',
                     voidCallbackAction: () {},
-                    imageUrl:
-                        "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/music-concert-poster-template-design-7aac74443adef25b155da04ea1338157_screen.jpg?ts=1641049200",
+                    imageUrl: "assets/5.jpg",
                   ),
                   CardItem(
                     title: 'Encargados',
                     subtitle: '27 Encargados',
                     voidCallbackAction: () {},
-                    imageUrl:
-                        "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/music-concert-poster-template-design-7aac74443adef25b155da04ea1338157_screen.jpg?ts=1641049200",
+                    imageUrl: "assets/6.jpg",
                   ),
                 ],
               ),
@@ -103,7 +100,7 @@ class BarraBuscar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return const Expanded(
       child: TextField(
         decoration: InputDecoration(
           hintText: 'Buscar',
@@ -156,7 +153,7 @@ class CardItem extends StatelessWidget {
       },
       child: Card(
         elevation: 5,
-        margin: EdgeInsets.symmetric(vertical: 10),
+        margin: const EdgeInsets.symmetric(vertical: 10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
           side: BorderSide(
@@ -164,13 +161,14 @@ class CardItem extends StatelessWidget {
             width: 1.0,
           ),
         ),
-        color: Colors.black,
+        color: Colors.blue,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             ClipRRect(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
-              child: Image.network(
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(15.0)),
+              child: Image.asset(
                 imageUrl,
                 height: 200,
                 fit: BoxFit.cover,
@@ -183,13 +181,13 @@ class CardItem extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text(
                     subtitle,
                     style: TextStyle(
@@ -205,4 +203,13 @@ class CardItem extends StatelessWidget {
       ),
     );
   }
+}
+
+//notificaciones push
+
+Future<void> initPlatform() async {
+  await OneSignal.shared.setAppId("76e53529-299d-4cb2-b663-b4323fda4c2a");
+  await OneSignal.shared
+      .getDeviceState()
+      .then((value) => {print(value!.userId)});
 }

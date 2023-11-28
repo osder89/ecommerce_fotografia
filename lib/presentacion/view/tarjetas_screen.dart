@@ -1,3 +1,4 @@
+import 'package:ecommerce_fotografia/presentacion/widget/custom_bottom_navigatorbar.dart';
 import 'package:flutter/material.dart';
 
 class MetodoPagoScreen extends StatelessWidget {
@@ -12,6 +13,7 @@ class MetodoPagoScreen extends StatelessWidget {
         title: Text('Métodos de Pago'),
         backgroundColor: Colors.blue,
       ),
+      bottomNavigationBar: CustomBottomNavigator(),
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Column(
@@ -22,7 +24,7 @@ class MetodoPagoScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.yellow,
+                color: Colors.black,
               ),
             ),
             SizedBox(height: 20),
@@ -58,7 +60,7 @@ class MetodoPagoScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.yellow,
+                color: Colors.black,
               ),
             ),
             SizedBox(height: 10),
